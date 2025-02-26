@@ -39,7 +39,7 @@ namespace WebApplication6.Controllers
             {
                 FirstName = model.FirstName,
                 LastName = model.LastName,
-                //IsActive = true,
+                IsActive = true,
                 CreatedBy = "Trainer",
                 CreatedDate = DateTime.UtcNow
             };
