@@ -8,10 +8,10 @@ namespace Training.Api
     {
         public static void Main(string[] args)
         {
+            // Initializes a new instance of the WebApplicationBuilder class with preconfigured defaults.
             var builder = WebApplication.CreateBuilder(args);
 
             // Add services to the container.
-
             builder.Services.AddControllers();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
