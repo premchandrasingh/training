@@ -24,7 +24,6 @@ namespace Training.Api
                     options.IncludeXmlComments(xmlPath);
             });
 
-
             builder.Services.AddDbContext<AppDbContext>(options =>
             {
                 options.UseMySQL(builder.Configuration.GetConnectionString("my_conn"));

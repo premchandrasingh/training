@@ -15,7 +15,13 @@ namespace Training.Mvc.Controllers
 
         public IActionResult Index()
         {
-            return View();
+            var emp = new EmployeeViewModel()
+            {
+                EmployeeId = 1,
+                Name = "Prem"
+            };
+
+            return View(emp);
         }
 
         public IActionResult Privacy()
