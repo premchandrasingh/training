@@ -47,6 +47,8 @@ namespace Training.Api.Controllers
         {
             var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Constants.JwtSecretKey));
             // HmacSha256 meaning HMAC + SHA265. HMAC means Hash-based Message Authentication Code, 
+            // HS256 stands for HMAC with SHA256 - used in symetric encryption
+            // RS256 stands for RSA with SHA256 - used in asymetric encryption
             var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
             var claims = CreateJwtClaims(employee, isRefreshToken);
 
