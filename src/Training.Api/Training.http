@@ -1,6 +1,17 @@
-@WebApplication6_HostAddress = http://localhost:5170
+@hostAddress = https://localhost:7184
 
-GET {{WebApplication6_HostAddress}}/employees/
+POST {{hostAddress}}/accounts/token
 Accept: application/json
+Content-Type: application/json
+{
+  "grant_type": "password",
+  "user_name": "prem",
+  "password": "123"
+}
+###
 
+
+GET {{hostAddress}}/employees
+Accept: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6IjEiLCJzdWIiOiIxIiwiZ2l2ZW5fbmFtZSI6IlByZW0gTGVpc2hhbmd0aGVtIiwicm9sZXMiOiJNYW5hZ2VyIiwianRpIjoiQVQuMGJmOGUwZTctZjRjNy00ZTYxLWFkMjEtNWMxM2QzZTEzMmJiIiwiZXhwIjoxNzQwOTMwMDExLCJpc3MiOiJUcmFpbmluZ19BUEkiLCJhdWQiOiJUcmFpbmluZyJ9.i-QINxB2lYxqDUypYCkaKAM7p3yfnOzS7vJwkgPqGDU
 ###

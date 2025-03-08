@@ -26,6 +26,8 @@ namespace Training.Api
 
                 opt.Property(e => e.FirstName).IsRequired().HasMaxLength(100);
                 opt.Property(e => e.LastName).HasMaxLength(100);
+                opt.Property(e => e.Password).IsRequired().HasMaxLength(100);
+                opt.Property(e => e.Role).IsRequired().HasMaxLength(50);
                 opt.Property(e => e.IsActive).IsRequired().HasDefaultValue(true);
                 opt.Property(e => e.CreatedBy).IsRequired().HasMaxLength(100);
                 opt.Property(e => e.CreatedDate).IsRequired();

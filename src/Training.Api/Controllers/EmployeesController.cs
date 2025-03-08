@@ -1,9 +1,11 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Training.Api.Entity;
 using Training.Api.Model;
 
 namespace Training.Api.Controllers
 {
+    [Authorize]
     [ApiController]
     [Route("[controller]")]
     public class EmployeesController : ControllerBase
@@ -24,7 +26,14 @@ namespace Training.Api.Controllers
         [HttpGet("")]
         public IEnumerable<Employee> GetEmployees()
         {
+            var user = User.Identity.Name;
             return _appDbContext.Employees.ToList();
+        }
+
+        [HttpGet("{employeeId}")]
+        public Employee GetEmployee(long employeeId)
+        {
+            return _appDbContext.Employees.Where(x => x.EmployeeId == employeeId).FirstOrDefault();
         }
 
         /// <summary>
@@ -35,10 +44,15 @@ namespace Training.Api.Controllers
         [HttpPost("")]
         public IEnumerable<Employee> SaveEmployees([FromBody] EmployeeBindingModel model)
         {
+
+            var passwords = new List<string> { "123", "abc", "xyz", "test" };
+            var roles = new List<string> { "admin", "developer", "accountant", "manager" };
             Employee newEmployee = new Employee
             {
                 FirstName = model.FirstName,
                 LastName = model.LastName,
+                Password = passwords[new Random().Next(passwords.Count - 1)],
+                Role = roles[new Random().Next(roles.Count - 1)],
                 IsActive = true,
                 CreatedBy = "Trainer",
                 CreatedDate = DateTime.UtcNow
