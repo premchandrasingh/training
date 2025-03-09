@@ -1,17 +1,54 @@
 @hostAddress = https://localhost:7184
+@refreshToken = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiJSVC43NmNhMzM5NS1lNzdkLTQxMDUtOTRhYi01NjZkMDFmZDQ4MWMiLCJleHAiOjE3NDQwNzgzNzAsImlzcyI6IlRyYWluaW5nX0FQSSIsImF1ZCI6IlRyYWluaW5nIn0.JzuettPBDXJvAr2b5XTLdk-VPamfaN6g-qq7B5Tt5WM
+// @token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6IjQiLCJzdWIiOiI0IiwiZ2l2ZW5fbmFtZSI6IlZpY3RvciBWaWN0b3IiLCJyb2xlcyI6IkRldmVsb3BlciIsImV4cCI6MTc0MTQ5MzAwNywiaXNzIjoiVHJhaW5pbmdfQVBJIiwiYXVkIjoiVHJhaW5pbmcifQ.qBN9KJP1P5pmt7IEHyQJmtKz-aCsLcEVT-7W1uvc_mE
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6IjIiLCJzdWIiOiIyIiwiZ2l2ZW5fbmFtZSI6IlVkb3kgTiIsInJvbGVzIjoiQWNjb3VudCIsImV4cCI6MTc0MTQ5MzI1NCwiaXNzIjoiVHJhaW5pbmdfQVBJIiwiYXVkIjoiVHJhaW5pbmcifQ.4uUwLBZmAFVLuldoEqmmSL5WZg35i09e7v1FCPHK4jw
 
 POST {{hostAddress}}/accounts/token
 Accept: application/json
 Content-Type: application/json
 {
   "grant_type": "password",
-  "user_name": "prem",
+  "user_name": "Udoy",
   "password": "123"
+}
+###
+
+POST {{hostAddress}}/accounts/token
+Accept: application/json
+Content-Type: application/json
+{
+  "grant_type": "refresh_token",
+  "refresh_token": {{refreshToken}}
 }
 ###
 
 
 GET {{hostAddress}}/employees
 Accept: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6IjEiLCJzdWIiOiIxIiwicm9sZXMiOiJNYW5hZ2VyIiwiZXhwIjoxNzQxNDM5NjQ1LCJpc3MiOiJUcmFpbmluZ19BUEkiLCJhdWQiOiJUcmFpbmluZyJ9.dJPgkj3eV1zM3Vy0H5WylkCtGoKL0tlPs3squZAOHsU
+Authorization: Bearer {{token}}
 ###
+
+
+GET {{hostAddress}}/employees/1
+Accept: application/json
+Authorization: Bearer {{token}}
+###
+
+### Save employee
+POST {{hostAddress}}/employees
+Accept: application/json
+Authorization: Bearer {{token}}
+Content-Type: application/json
+{
+   "firstName": "xyz",
+   "lastName": "xyz"
+}
+###
+
+
+
+
+GET {{hostAddress}}/employees/public
+Accept: application/json
+###
+  

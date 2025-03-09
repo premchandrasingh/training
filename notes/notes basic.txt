@@ -1,0 +1,12 @@
+public class Employee
+{
+	public string FirstName { get; set; }
+
+	public string LastName { get; set; }
+}
+
+
+var emp = new Employee();  ==> instantiation. where "emp" is called "instance"
+
+
+- Every class is inherited from .net base class called "Object" even thought you write explicitly or not.

@@ -1,0 +1,71 @@
+
+System preparation
+
+- .net 8 sdk install
+	- https://dotnet.microsoft.com/en-us/download/dotnet/8.0
+		- Windows (X64)
+		
+- VS Code OR Visusual Studio Community edition 2022
+	- Instlal "C# Dev Kit" extension on vs code
+
+
+Donet CLI commands
+	dotnet new list
+
+	dotnet new webapi --name MyFirstWebAPIProject
+	
+
+
+Database access mechanism
+	- Basic one
+	- Dapper  ( library)
+	- EntityFrameworkCore  (Microsoft Library)
+
+ <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.13" />
+ <PackageReference Include="MySql.EntityFrameworkCore" Version="8.0.11" />
+ <PackageReference Include="MySqlConnector" Version="2.4.0" />
+
+
+
+- Cretae DB
+- Add a connection string to the project
+- Install required libraries to the project
+- Start writing code in the project to access the database
+	- Create a database table mapping class in the project
+	- Create a EntityFramework db context
+
+
+
+
+DB
+CREATE TABLE `training`.`employee` (
+  `EmployeeId` BIGINT NOT NULL AUTO_INCREMENT,
+  `FirstName` NVARCHAR(100) NOT NULL,
+  `LastName` NVARCHAR(100) NULL,
+  `IsActive` TINYINT NOT NULL DEFAULT (1),
+  `CreatedBy` NVARCHAR(100) NOT NULL,
+  `CreatedDate` DATETIME NOT NULL DEFAULT (utc_timestamp()),
+  PRIMARY KEY (`EmployeeId`));
+
+
+
+
+- What is MVV (Model View Controller)?
+
+1. Controller (Request received)
+2. Model (Data) - Can be retrieve from DB or you can contruct yourslef
+3. View (Contruct HTML)
+
+- CSS (Cascading Style Sheet) - Cosmetic box of Browser
+
+- Name of .net view Engine - "Razor view engine"
+
+- Middleware 
+
+
+- Dependancy Injection
+
+- Authentication and Authorization
+	- Authentication - Who are you
+	- Authorization - I know who are you but do you have right permission
+

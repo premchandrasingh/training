@@ -1,0 +1,22 @@
+
+-- select all employee
+SELECT * FROM training.employee;
+
+-- Select first 2 employees. 2 can be changed into any number
+SELECT * FROM training.employee limit 2;
+
+-- Select specific column names
+SELECT FirstName, LastName, `Role` FROM training.employee;
+
+-- Sort employee table by FirstName
+SELECT * FROM training.employee order by FirstName;
+
+-- Sort employee table by FirstName then take first 5 employee
+SELECT * FROM training.employee order by FirstName limit 5;
+
+-- Inset an employee to employee table. Column SEQUENCE is IMPORTANT
+INSERT INTO `employee` (`FirstName`, `LastName`, `Password`, `Role`, `IsActive`, `CreatedBy`, `CreatedDate`)
+VALUES ('Ryan', 'Private', '123', 'Guess', 1 , 'Prem', '2025-03-09 03:00:00');
+
+
+      

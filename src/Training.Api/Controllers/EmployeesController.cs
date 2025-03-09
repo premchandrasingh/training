@@ -23,6 +23,7 @@ namespace Training.Api.Controllers
         /// Retrieve all emplyee
         /// </summary>
         /// <returns></returns>
+        
         [HttpGet("")]
         public IEnumerable<Employee> GetEmployees()
         {
@@ -41,6 +42,7 @@ namespace Training.Api.Controllers
         /// </summary>
         /// <param name="model"></param>
         /// <returns></returns>
+        [Authorize(Roles = "Admin,Account")]
         [HttpPost("")]
         public IEnumerable<Employee> SaveEmployees([FromBody] EmployeeBindingModel model)
         {
@@ -80,6 +82,7 @@ namespace Training.Api.Controllers
         /// <param name="employeeId"></param>
         /// <param name="model"></param>
         /// <returns></returns>
+        [Authorize(Roles = "Admin,Account")]
         [HttpPut("{employeeId}")]
         public IEnumerable<Employee> UdpateEmployees(long employeeId, [FromBody] EmployeeBindingModel model)
         {
@@ -116,6 +119,26 @@ namespace Training.Api.Controllers
             _appDbContext.SaveChanges();
 
             return _appDbContext.Employees.ToList();
+        }
+
+        [AllowAnonymous]
+        [HttpGet("public")]
+        public IEnumerable<Employee> GetPublicEmployees()
+        {
+
+            var emp = new Employee()
+            {
+                EmployeeId = 1111,
+                FirstName = "John",
+                LastName = "Doe",
+                Password = "123",
+                Role = "guess",
+                IsActive = true,
+                CreatedBy = "Trainer",
+                CreatedDate = DateTime.UtcNow
+            };
+            
+            return new List<Employee> { emp };
         }
     }
 }

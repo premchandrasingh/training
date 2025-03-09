@@ -25,7 +25,7 @@ namespace Training.Api.Controllers
         public JsonResult GenerateToken([FromBody] LoginBindingModel model)
         {
             var emp = _appDbContext.Employees.Where(x => x.FirstName == model.UserName && x.Password == model.Password).FirstOrDefault();
-            if(emp == null)
+            if (emp == null)
             {
                 return new JsonResult(new { Message = "Invalid username or password" })
                 {
@@ -56,11 +56,11 @@ namespace Training.Api.Controllers
             if (isRefreshToken)
             {
                 // Refresh token claims
-                expiry = DateTime.UtcNow.AddDays(30);
+                expiry = DateTime.UtcNow.AddMinutes(60 + 20);
             }
             else
             {
-                expiry = DateTime.UtcNow.AddSeconds(TimeSpan.FromMinutes(60).TotalSeconds);
+                expiry = DateTime.UtcNow.AddMinutes(60);
             }
 
 
@@ -82,7 +82,6 @@ namespace Training.Api.Controllers
             {
                 // Refresh token claims
                 new Claim(JwtRegisteredClaimNames.Sub, app.EmployeeId.ToString());
-                claims.Add(new Claim(JwtRegisteredClaimNames.Jti, "RT." + Guid.NewGuid().ToString())); // 'RT' here is for refresh token
             }
             else
             {
@@ -92,8 +91,6 @@ namespace Training.Api.Controllers
                     new Claim(JwtRegisteredClaimNames.Sub, app.EmployeeId.ToString()),
                     new Claim(JwtRegisteredClaimNames.GivenName, $"{app.FirstName} {app.LastName}"),
                     new Claim("roles", app.Role),
-                    // Jti = json token id
-                    new Claim(JwtRegisteredClaimNames.Jti, "AT." + Guid.NewGuid().ToString()) // 'AT' here for acces token
                 });
             }
 
